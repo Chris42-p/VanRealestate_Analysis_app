@@ -1,13 +1,55 @@
-services:
-  frontend: 
-    build:
-      context: .
-    container_name: frontend
-    ports:
-      - "8000:8000"
-    # volumes:
-      # - 
+#build the image:           sudo docker compose up -d --build backend
+#see if image exists:       sudo docker ps -a
+#run the container:         sudo docker compose up -d backend 
+    #check the exit code:   sudo docker ps -a
+    #view the logs:         sudo docker compose logs backend
 
-  backend: 
-    build:
-      context: .
+#build image and have it running 
+
+
+services:
+
+  backend:   
+    container_name: backend          #name of the container
+    build:            
+      context: ./app                      #where docker looks for files to build
+      dockerfile: ./backend/server/Dockerfile    # Path to DockerFile  (relative to context: ./app)
+    ports:
+      - "3000:3000"                   #host_port: container_port
+    volumes:
+      - ./app/backend/server:/app            #sync local files to /app inside container
+ 
+
+
+
+
+
+
+#Commands. 
+
+  #images 
+    # docker images                 # list images
+    # docker build -t name .        # build image
+    # docker rmi image_id           # remove image
+
+  #containers
+    # docker ps                     # running containers
+    # docker ps -a                  # all containers (including stopped)
+    # docker run image              # create & run container
+    # docker stop container         # stop container
+    # docker start container        # restart container
+    # docker rm container           # remove container
+    # docker logs container         # view logs
+    # docker exec -it container sh  # open shell inside
+
+  #docker compose 
+    # docker compose up             # start services
+    # docker compose up -d          # start in background
+    # docker compose down           # stop & remove containers
+    # docker compose logs           # view logs
+    # docker compose ps             # list containers
+    # docker compose build          # rebuild images
+
+  #clean up
+    # docker system prune           # remove unused images/containers
+    # docker volume prune           # remove unused volumes
