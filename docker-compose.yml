@@ -18,7 +18,7 @@ services:
       - "3000:3000"                   #host_port: container_port
     volumes:
       - ./app/backend/server:/app            #sync local files to /app inside container
- 
+    restart: always
 
 
 
